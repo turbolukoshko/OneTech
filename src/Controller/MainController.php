@@ -2,18 +2,45 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class MainController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function index()
+    public function index(CategoryRepository $categoryRepository)
     {
+        $categories = $categoryRepository->findBy(['parent' => null]);
         return $this->render('main/index.html.twig', [
             'page_title' => 'OneTech',
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/categories", name="categories")
+     */
+    public function categories(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findBy(['parent' => null]);
+        return $this->render('main/index.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/category/{categorySlug}", name="category")
+     * @ParamConverter("category", options={"mapping":{"categorySlug":"slug"}})
+     */
+    public function category(Category $category)
+    {
+        return $this->render('main/index.html.twig', [
+            'category' => $category,
         ]);
     }
 
