@@ -1,0 +1,21 @@
+ {% block categories %}
+     <ul class="cat_menu">
+         {% for category in categories %}
+             <li class="hassubs">
+                 <a href="{{ path('category', {'categorySlug' : category.slug}) }}">{{ category.title }}<i class="fas fa-chevron-right"></i></a>
+                 <ul>
+                     {% for childLevelOne in category.children %}
+                     <li class="hassubs">
+                         <a href="{{ path('category', {'categorySlug' : childLevelOne.slug}) }}">{{ childLevelOne.title }}<i class="fas fa-chevron-right"></i></a>
+                         <ul>
+                             {% for childLevelTwo in childLevelOne.children %}
+                                 <li><a href="{{ path('category', {'categorySlug' : childLevelTwo.slug}) }}">{{ childLevelTwo.title }}<i class="fas fa-chevron-right"></i></a></li>
+                             {% endfor %}
+                         </ul>
+                         {% endfor %}
+                     </li>
+                 </ul>
+             </li>
+         {% endfor %}
+     </ul>
+     {% endblock %}

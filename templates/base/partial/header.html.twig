@@ -133,28 +133,9 @@
                              <div class="cat_menu_container">
                                  <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                      <div class="cat_burger"><span></span><span></span><span></span></div>
-                                     <div class="cat_menu_text">{{ 'categories' }}</div>
+                                     <div class="cat_menu_text">categories</div>
                                  </div>
-
-                                 <ul class="cat_menu">
-                                     {% for category in categories %}
-                                     <li class="hassubs">
-                                         <a href="{{ path('category', {'categorySlug' : category.slug}) }}">{{ category.title }}<i class="fas fa-chevron-right"></i></a>
-                                         <ul>
-                                             {% for childLevelOne in category.children %}
-                                             <li class="hassubs">
-                                                 <a href="{{ path('category', {'categorySlug' : childLevelOne.slug}) }}">{{ childLevelOne.title }}<i class="fas fa-chevron-right"></i></a>
-                                                 <ul>
-                                                     {% for childLevelTwo in childLevelOne.children %}
-                                                     <li><a href="{{ path('category', {'categorySlug' : childLevelTwo.slug}) }}">{{ childLevelTwo.title }}<i class="fas fa-chevron-right"></i></a></li>
-                                                     {% endfor %}
-                                                 </ul>
-                                                 {% endfor %}
-                                             </li>
-                                         </ul>
-                                     </li>
-                                     {% endfor %}
-                                 </ul>
+                                 {{ render(controller('App\\Controller\\CategoryController::categories')) }}
                              </div>
 
                              <!-- Main Nav Menu -->
@@ -200,7 +181,7 @@
                                              <li><a href="{{ path('shop') }}">Shop<i class="fas fa-chevron-down"></i></a></li>
                                              <li><a href="{{ path('product') }}">Product<i class="fas fa-chevron-down"></i></a></li>
                                              <li><a href="{{ path('blog') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                             <li><a href="{{ path('blog_single') }}">Blog Post<i class="fas fa-chevron-down"></i></a></li>
+                                             <li><a href="{{ path('blog-single') }}">Blog Post<i class="fas fa-chevron-down"></i></a></li>
                                              <li><a href="{{ path('regular') }}">Regular Post<i class="fas fa-chevron-down"></i></a></li>
                                              <li><a href="{{ path('cart') }}">Cart<i class="fas fa-chevron-down"></i></a></li>
                                              <li><a href="{{ path('contact') }}">Contact<i class="fas fa-chevron-down"></i></a></li>

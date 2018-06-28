@@ -18,18 +18,6 @@ class MainController extends Controller
         $categories = $categoryRepository->findBy(['parent' => null]);
         return $this->render('main/index.html.twig', [
             'page_title' => 'OneTech',
-            'categories' => $categories,
-        ]);
-    }
-
-    /**
-     * @Route("/category/{categorySlug}", name="category")
-     * @ParamConverter("category", options={"mapping":{"categorySlug":"slug"}})
-     */
-    public function category(Category $category)
-    {
-        return $this->render('main/index.html.twig', [
-            'category' => $category,
         ]);
     }
 
@@ -64,7 +52,7 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/blog_single", name="blog_single")
+     * @Route("/blog-single", name="blog-single")
      */
     public function blogSingle()
     {
